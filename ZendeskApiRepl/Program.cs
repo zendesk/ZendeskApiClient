@@ -12,8 +12,8 @@ using ZendeskApi.Client.Resources;
 var zendeskOptions = new ZendeskOptions
 {
    EndpointUri = "https://z3n-api-client-rb.zendesk.com",
-   Username = "agent@zendesk.com",
-   Token = ""
+   Username = "api-client-rb+agent@zendesk.com",
+   Token = "tLzGI6Mfi4TwABtJKpRHGs4bE23JOecqUxTyE9Wx"
 };
 
 var loggerFactory = new LoggerFactory();
@@ -22,7 +22,7 @@ var zendeskOptionsWrapper = new OptionsWrapper<ZendeskOptions>(zendeskOptions);
 
 var services = new ServiceCollection();
 
-services.AddZendeskClientWithHttpClientFactory("https://z3n-api-client-rb.zendesk.com", "api-client-rb+agent@zendesk.com", "tLzGI6Mfi4TwABtJKpRHGs4bE23JOecqUxTyE9Wx"); 
+services.AddZendeskClientWithHttpClientFactory("https://z3n-api-client-rb.zendesk.com", "a-rb+agent@zendesk.com", ""); 
 var serviceProvider = services.BuildServiceProvider();
 var client = (ZendeskClient)serviceProvider.GetRequiredService<IZendeskClient>();
 
@@ -32,8 +32,8 @@ var ticketResponseCursor = (TicketsListCursorResponse) await client.Tickets.GetA
 while (ticketResponseCursor.Meta.HasMore)
 {
     // at this point, we have ticketResponseCursor.Tickets with a count of 2 (page size)
-   
-    ticketResponseCursor.Next(client);
+    Console.WriteLine(ticketResponseCursor.Tickets);
+    ticketResponseCursor.Next();
     // the lines below doesn't work... but it's somewhat what I would expect
     // ticketResponseCursor = (TicketsListCursorResponse) client.fetch/get(nextPageUrl);
     // ticketReponseCursor.getNext() // would execute the request for the next page
