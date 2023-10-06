@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using ZendeskApi.Client.Extensions;
 using ZendeskApi.Client.Formatters;
 using ZendeskApi.Client.Models;
+using ZendeskApi.Client.Resources.Interfaces;
 
 namespace ZendeskApi.Client.Resources
 {
@@ -321,6 +322,11 @@ namespace ZendeskApi.Client.Resources
                     scope,
                     cancellationToken)
                 .ReadContentAsAsync<TResponse>();
+        }
+
+        public string ExecuteRequest(string url)
+        {
+            return "asdfadsffl";
         }
     }
 }

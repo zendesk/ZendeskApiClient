@@ -29,6 +29,7 @@ namespace ZendeskApi.Client.Resources
             : base(apiClient, logger, "tickets")
         { }
 
+    
         #region GetAll Tickets
         [Obsolete("Use `GetAllAsync` with CursorPager parameter instead.")]
         public async Task<IPagination<Ticket>> GetAllAsync(

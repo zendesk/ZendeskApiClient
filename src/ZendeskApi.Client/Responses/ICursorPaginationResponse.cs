@@ -26,6 +26,16 @@ namespace ZendeskApi.Client.Responses
 
         public Meta Meta { get; set; }
         public Links Links { get; set; }
+
+        public string Next(ZendeskClient client)
+        {
+           client.
+        }
+
+        public string Prev()
+        {
+            return "prev";
+        }
     }
 
     public class Meta
@@ -45,4 +55,6 @@ namespace ZendeskApi.Client.Responses
         [JsonProperty("next")]
         public string Next { get; set; }
     }
+
+    
 }

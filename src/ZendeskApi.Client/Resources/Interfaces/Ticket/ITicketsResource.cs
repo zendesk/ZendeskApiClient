@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ZendeskApi.Client.Models;
 using ZendeskApi.Client.Requests;
+using ZendeskApi.Client.Resources.Interfaces;
 using ZendeskApi.Client.Responses;
 
 namespace ZendeskApi.Client.Resources
