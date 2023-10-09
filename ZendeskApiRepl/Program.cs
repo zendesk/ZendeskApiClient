@@ -22,7 +22,7 @@ var zendeskOptionsWrapper = new OptionsWrapper<ZendeskOptions>(zendeskOptions);
 
 var services = new ServiceCollection();
 
-services.AddZendeskClientWithHttpClientFactory("https://z3n-api-client-rb.zendesk.com", "a-rb+agent@zendesk.com", ""); 
+services.AddZendeskClientWithHttpClientFactory("https://z3n-api-client-rb.zendesk.com", "", ""); 
 var serviceProvider = services.BuildServiceProvider();
 var client = (ZendeskClient)serviceProvider.GetRequiredService<IZendeskClient>();
 
@@ -33,15 +33,12 @@ while (ticketResponseCursor.Meta.HasMore)
 {
     // at this point, we have ticketResponseCursor.Tickets with a count of 2 (page size)
     Console.WriteLine(ticketResponseCursor.Tickets);
-    ticketResponseCursor.Next();
+    client.Tickets.Ge
     // the lines below doesn't work... but it's somewhat what I would expect
     // ticketResponseCursor = (TicketsListCursorResponse) client.fetch/get(nextPageUrl);
     // ticketReponseCursor.getNext() // would execute the request for the next page
     // ticketResponseCursor.Tickets // expected to be List<Ticket> count 2 - from the second page
 }
-
-var blah = (TicketsResource)client.Tickets;
-blah.ExecuteRequest("does not work");
 
 
 // 1 - find a way to make a random request - more likely with a Resource instance.
